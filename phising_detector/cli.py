@@ -55,11 +55,18 @@ Contoh penggunaan:
 
     parser_setup = subparsers.add_parser('setup', help='Setup awal: download dataset & training model')
 
+    parser_gui = subparsers.add_parser('gui', help='Buka GUI Desktop')
+
     args = parser.parse_args()
 
     if args.command is None:
         print_banner()
         parser.print_help()
+        return
+
+    if args.command == 'gui':
+        from .gui import main as gui_main
+        gui_main()
         return
 
     if args.command == 'features':
